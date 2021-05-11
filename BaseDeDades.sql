@@ -1,4 +1,5 @@
 --CONFIGURATION TABLES
+DROP FINAL_PROYECT;
 CREATE DATABASE FINAL_PROYECT;
 USE FINAL_PROYECT;
 
@@ -106,6 +107,6 @@ insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Michonne
 
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Legolas', 3, 'legolas.png');
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Sylvanas', 3, 'sylvanas.png');
-insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Link', 3, 'link.png');*/
+insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Link', 3, 'link.png');
 
 
