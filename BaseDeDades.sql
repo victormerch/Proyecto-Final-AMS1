@@ -1,9 +1,6 @@
-
-
-
-/*CONFIGURATION TABLES*/
-/*CREATE DATABASE FINAL_PROYECT;
-USE FINAL_PROYECT;*/
+--CONFIGURATION TABLES
+CREATE DATABASE FINAL_PROYECT;
+USE FINAL_PROYECT;
 
 CREATE TABLE RACE (
 RACE_ID INT auto_increment,
@@ -80,13 +77,13 @@ REFERENCES WEAPONS_AVAILABLE(WEAPON_ID),
 CONSTRAINT fk_OpponentWeapon FOREIGN KEY (OPPONENT_WEAPON_ID)
 REFERENCES WEAPONS_AVAILABLE(WEAPON_ID));
 
-/*	ALL RACES
+--ALL RACES
 insert into RACE(RACE_NAME, HP, STRENGTH, DEF, AGILITY, VELOCITY) values('Dwarf', 60, 6, 4, 5, 3);
 insert into RACE(RACE_NAME, HP, STRENGTH, DEF, AGILITY, VELOCITY) values('Human', 50, 5, 3, 6, 5);
 insert into RACE(RACE_NAME, HP, STRENGTH, DEF, AGILITY, VELOCITY) values('Elf', 40, 4, 2, 7, 7);
-*/
 
-/* ALL WEAPONS
+
+--ALL WEAPONS
 insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PATH) values('Dagger', 0, 3, 'Human, Elf', 'dagger.png');
 insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PATH) values('Sword', 1, 1, 'Human, Elf, Dwarf', 'sword.png');
 insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PATH) values('Axe', 3, 0, 'Human, Dwarf', 'axe.png');
@@ -96,9 +93,9 @@ insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PAT
 insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PATH) values('Katana', 2, 3, 'Human', 'katana.png');
 insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PATH) values('Dirk', 0, 4, 'Human, Elf, Dwarf', 'dirk.png');
 insert into WEAPONS(WEAPON_NAME, ADD_STR, ADD_VEL, WEAPON_RACE, WEAPON_IMAGE_PATH) values('Double Axe', 5, 0, 'Dwarf', 'doubleAxe.png');
-*/
 
-/*
+
+
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Tyron', 1, 'tyron.png');
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Gimli', 1, 'gimli.png');
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Adkam', 1, 'adkam.png');
