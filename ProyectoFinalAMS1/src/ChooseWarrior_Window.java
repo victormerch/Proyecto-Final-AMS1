@@ -19,12 +19,8 @@ import javax.swing.JPanel;
 public class ChooseWarrior_Window extends JPanel{
 	private  ArrayList<Warrior> array;
 	private  ArrayList<JButton> ButtonArray = new ArrayList<JButton>();
-	public ChooseWarrior_Window(ArrayList<Warrior> array) {
-		this.array = array;
-		ArrayList<Warrior> Human = new ArrayList<Warrior>();
-		ArrayList<Warrior> Elf = new ArrayList<Warrior>();
-		ArrayList<Warrior> Dwarf = new ArrayList<Warrior>();
-		
+	public ChooseWarrior_Window(WarriorContainer warriorContainer) {
+		this.array = warriorContainer.getWarriors();
 		JLabel title = new JLabel("Choose the Warrior");
 		add(title);
 		title.setFont(new Font("Arial",Font.ITALIC|Font.BOLD,24));
@@ -32,15 +28,10 @@ public class ChooseWarrior_Window extends JPanel{
 		
 		add(Box.createVerticalGlue());
 		//
-		for (Warrior warrior : array) {
-			if (warrior instanceof Human ) {
-				Human.add(warrior);
-			}else if (warrior instanceof Elf ) {
-				Elf.add(warrior);
-			}else if (warrior instanceof Dwarf ) {
-				Dwarf.add(warrior);
-			}
-		}
+		ArrayList<Warrior> Human = warriorContainer.getHumans();
+		ArrayList<Warrior> Elf = warriorContainer.getElf();
+		ArrayList<Warrior> Dwarf = warriorContainer.getDwarf();
+		
 		Race_panel humanPanel = new Race_panel(Human,"Human");
 		for (JButton boton:humanPanel.getBotones()) {
 			
@@ -93,6 +84,11 @@ class Race_panel extends JPanel{
 			        Image.SCALE_SMOOTH);
 			ImageIcon imageIcon = new ImageIcon(dimg);
 			JButton boton = new JButton(warrior.getWarrior_name(),imageIcon);
+			boton.setToolTipText("HP: " + warrior.getHealth()
+			+ "\n Damage: " + warrior.getForce()
+			+ "\n Defense: " + warrior.getDefense()
+			+ "\n Agility: " + warrior.getAgility()
+			+ "\n Speed: " + warrior.getVelocity());
 			botones.add(boton);
 			add(boton);
 				

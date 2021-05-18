@@ -32,12 +32,14 @@ public class ChooseWeapon_Panel extends JPanel{
 			        Image.SCALE_SMOOTH);
 			ImageIcon imageIcon = new ImageIcon(dimg);
 			JButton boton = new JButton(weapon.getWeapon_name(),imageIcon);
+			boton.setToolTipText("Speed: " + weapon.getPlus_velocity()
+			+" Damage: " + weapon.getPlus_force());
 			boton.setOpaque(true);
 			boton.setBackground(Color.white);
 			this.ButtonArray.add(boton);
 			gridPanel.add(boton);
 		}
-		gridPanel.setLayout(new GridLayout(3,3));
+		gridPanel.setLayout(new GridLayout(0,2));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		add(gridPanel);
 		

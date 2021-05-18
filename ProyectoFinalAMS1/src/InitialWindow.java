@@ -51,7 +51,7 @@ public class InitialWindow extends JPanel{
 		tx1 = new JTextField("root",10);//QUITAR POR DEFECTO
 		gridPanel.add(tx1);
 		gridPanel.add(new JLabel("PassDB:",JLabel.RIGHT));
-		tx2 = new JPasswordField("victor",10);//QUITAR POR DEFECTO
+		tx2 = new JPasswordField("metajets",10);//QUITAR POR DEFECTO
 		gridPanel.add(tx2);
 		gridPanel.setLayout(new GridLayout(3,2,5,5));
 		panel1.add(gridPanel);

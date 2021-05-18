@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 abstract public class Warrior{
 	
@@ -171,4 +172,60 @@ class Elf extends Warrior{
 	
 	
 }
+class WarriorContainer{
+    private ArrayList<Warrior> warriors;
+    public WarriorContainer(ArrayList<Warrior> array){
+        warriors = array;
+    }
 
+    public void addWarrior(Warrior w) {
+        warriors.add(w);
+    }
+
+    public Warrior getRandomWarrior() {
+    	return warriors.get((int) Math.floor(Math.random() * (warriors.size() - 2 + 1) + 1));
+    }
+    
+    public int getDimension() {
+        return warriors.size();
+    }
+
+    public Warrior getWarriorIndex(int indice) {
+        return warriors.get(indice);
+    }
+
+	public ArrayList<Warrior> getWarriors() {
+		return warriors;
+	}
+
+	public void setWarriors(ArrayList<Warrior> warriors) {
+		this.warriors = warriors;
+	}
+    public ArrayList<Warrior> getHumans(){
+    	ArrayList<Warrior> Human = new ArrayList<Warrior>();
+    	for (Warrior warrior : warriors) {
+			if (warrior instanceof Human ) {
+				Human.add(warrior);
+			}
+		}
+		return Human;
+    }
+    public ArrayList<Warrior> getElf(){
+    	ArrayList<Warrior> Elf = new ArrayList<Warrior>();
+    	for (Warrior warrior : warriors) {
+			if (warrior instanceof Human ) {
+				Elf.add(warrior);
+			}
+		}
+		return Elf;
+    }
+    public ArrayList<Warrior> getDwarf(){
+    	ArrayList<Warrior> Dwarf = new ArrayList<Warrior>();
+    	for (Warrior warrior : warriors) {
+			if (warrior instanceof Human ) {
+				Dwarf.add(warrior);
+			}
+		}
+		return Dwarf;
+    }
+}

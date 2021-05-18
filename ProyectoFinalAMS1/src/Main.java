@@ -3,6 +3,8 @@ import java.awt.Container;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.ResultSet;
@@ -26,6 +28,8 @@ import com.mysql.cj.xdevapi.Statement;
 
 public class Main extends JFrame {
 	private static Scanner input = new Scanner(System.in);
+	// Containers
+	private static WarriorContainer warriorContainer ;
 	// Boolean for fight
 	private static boolean inFight = false;
 	private static boolean fightBool = true;
@@ -75,12 +79,14 @@ public class Main extends JFrame {
 		boton1.addActionListener(new activeBotons());
 		add(panel1);
 
+		
+		//
+		
 		setVisible(true);
 	}
 
 	// Battle Algorithm
 	public void algoritmBattle(Player user, Player bot) throws SQLException {
-
 		if (fightBool) {
 			inFight = true;
 			if (user.getVel() > bot.getVel()) {
@@ -158,13 +164,15 @@ public class Main extends JFrame {
 				}
 				if (player2.getLife() < 1) {
 					System.out.println(player2.getName() + " has been defeated.");
+					panel4.getTerminal().setBackground(Color.RED);
 					fightfinal = true;
 				}
 				if (player1.getLife() < 1) {
 					System.out.println(player1.getName() + " has been defeated.");
+					panel4.getTerminal().setBackground(Color.GREEN);
 					fightfinal = true;
 				}
-
+				
 			} else {
 				player2.setLife(player2.getLife() - player1.getAtack());
 				System.out.println(bot.Username + ": HP of " + player2.getName() + " has " + player2.getLife());
@@ -196,10 +204,12 @@ public class Main extends JFrame {
 				}
 				if (player2.getLife() < 1) {
 					System.out.println(player2.getName() + " has been defeated.");
+					panel4.getTerminal().setBackground(Color.GREEN);
 					fightfinal = true;
 				}
 				if (player1.getLife() < 1) {
 					System.out.println(player1.getName() + " has been defeated.");
+					panel4.getTerminal().setBackground(Color.RED);
 					fightfinal = true;
 				}
 
@@ -220,7 +230,7 @@ public class Main extends JFrame {
 						ConnectionDB.insertRanking(player2.getName(), totalPoints);
 					}
 					int confirmado = JOptionPane.showConfirmDialog(null,
-							"GAMEOVER\n, do you want to play with a different character again?\n" + "You've got: "
+							"GAMEOVER\nDo you want to play with a different character again?\n" + "You've got: "
 									+ totalPoints + " points");
 					if (JOptionPane.OK_OPTION == confirmado) {
 
@@ -229,7 +239,7 @@ public class Main extends JFrame {
 						setSize(900, 600);
 						setLocationRelativeTo(null);
 						setDefaultCloseOperation(EXIT_ON_CLOSE);
-						panel2 = new ChooseWarrior_Window(conn.getWarriorContainer());
+						panel2 = new ChooseWarrior_Window(warriorContainer);
 						for (JButton boton : panel2.getButtonArray()) {
 							boton.addActionListener(new activeBotons());
 						}
@@ -299,7 +309,7 @@ public class Main extends JFrame {
 						ConnectionDB.insertRanking(player1.getName(), totalPoints);
 					}
 					int confirmado = JOptionPane.showConfirmDialog(null,
-							"GAMEOVER\n, do you want to play with a different character again?\n" + "You've got: "
+							"\tGAMEOVER\nDo you want to play with a different character again?\n" + "You've got: "
 									+ totalPoints + " points");
 					if (JOptionPane.OK_OPTION == confirmado) {
 						remove(panel4);
@@ -307,7 +317,7 @@ public class Main extends JFrame {
 						setSize(900, 600);
 						setLocationRelativeTo(null);
 						setDefaultCloseOperation(EXIT_ON_CLOSE);
-						panel2 = new ChooseWarrior_Window(conn.getWarriorContainer());
+						panel2 = new ChooseWarrior_Window(warriorContainer);
 						for (JButton boton : panel2.getButtonArray()) {
 							boton.addActionListener(new activeBotons());
 						}
@@ -396,12 +406,14 @@ public class Main extends JFrame {
 					// Take the second warrior for CPU one time
 					if (!Main.cpu_player_bool) {
 
-						ArrayList<Warrior> warriors2 = conn.getWarriorContainer();
-						Main.warriorCPU = warriors2
-								.get((int) Math.floor(Math.random() * (warriors2.size() - 2 + 1) + 1));
+						warriorContainer = new WarriorContainer(conn.getWarriorContainer());
+						Main.warriorCPU = warriorContainer.getRandomWarrior();
+						
 						ArrayList<Weapon> weapons2 = conn.getWeaponContainer(warriorCPU);
 						Main.weaponCPU = weapons2.get((int) Math.floor(Math.random() * (weapons2.size() - 2 + 1) + 1));
 						Main.cpu_player_bool = true;
+						
+						
 					}
 
 					// ============
@@ -415,7 +427,7 @@ public class Main extends JFrame {
 					setSize(900, 600);
 					setLocationRelativeTo(null);
 					setDefaultCloseOperation(EXIT_ON_CLOSE);
-					panel2 = new ChooseWarrior_Window(conn.getWarriorContainer());
+					panel2 = new ChooseWarrior_Window(warriorContainer);
 					for (JButton boton : panel2.getButtonArray()) {
 						boton.addActionListener(new activeBotons());
 					}
@@ -581,3 +593,4 @@ class Tabla extends JFrame{
 
 	
 }
+

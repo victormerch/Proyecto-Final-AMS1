@@ -9,6 +9,8 @@ import java.awt.Image;
 import java.awt.Label;
 import java.awt.LayoutManager;
 import java.awt.Toolkit;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -37,7 +39,6 @@ public class BattleWindow extends JPanel{
 	private WarriorPanel panelPlayer,panelCPU;
 	//Panel principal de batalla
 	public BattleWindow(String username,Warrior warriorPlayer,Weapon weaponPlayer,Warrior warriorCPU,Weapon weaponCPU) {
-		
 		setLayout(new BorderLayout());
 		JPanel panel1 = new JPanel();
 		//Botones norte
@@ -181,7 +182,6 @@ class WarriorPanel extends JPanel{
 		Toolkit mipantalla = Toolkit.getDefaultToolkit();
 		Image miicono = mipantalla.getImage(sCarpAct+File.separator+"imagenes"+File.separator+warriorPlayer.getImg());
 		
-		
 		Image dimg = miicono.getScaledInstance(170, 290,
 		        Image.SCALE_SMOOTH);
 		ImageIcon imageIcon = new ImageIcon(dimg);
@@ -189,6 +189,11 @@ class WarriorPanel extends JPanel{
 		img.setIcon(imageIcon);
 		img.setAlignmentX(CENTER_ALIGNMENT);
 		panelImg.add(img);
+		panelImg.setToolTipText("HP: " + warriorPlayer.getHealth()
+		+ "\n Damage: " + warriorPlayer.getForce()
+		+ "\n Defense: " + warriorPlayer.getDefense()
+		+ "\n Agility: " + warriorPlayer.getAgility()
+		+ "\n Speed: " + warriorPlayer.getVelocity());
 		
 		panelfondo.add(panelImg);
 		add(panelfondo);
@@ -202,12 +207,14 @@ class WarriorPanel extends JPanel{
 		String sCarpAct2 = System.getProperty("user.dir");
 		Toolkit mipantalla2 = Toolkit.getDefaultToolkit();
 		Image miicono2 = mipantalla2.getImage(sCarpAct+File.separator+"imagenes"+File.separator+weaponPlayer.getWeapon_url());
-
+		
 		Image dimg2 = miicono2.getScaledInstance(80, 80,
 		        Image.SCALE_SMOOTH);
 		ImageIcon imageIcon2 = new ImageIcon(dimg2);
 		img2.setIcon(imageIcon2);
 		panelStats.add(img2);
+		img2.setToolTipText("Speed: " + weaponPlayer.getPlus_velocity()
+		+"Damage: " + weaponPlayer.getPlus_force());
 		//Progress Bar habilidades
 		panelGrid.add(new JLabel("Power",JLabel.RIGHT));
 		panelGrid.add(new ProgressBar(0,0,Color.red,warriorPlayer.getForce()+weaponPlayer.getPlus_force()));
@@ -219,7 +226,10 @@ class WarriorPanel extends JPanel{
 		panelGrid.add(new ProgressBar(0,0,Color.blue,warriorPlayer.getDefense()));
 		
 		panelGrid.setLayout(new GridLayout(4,2));
-		
+		panelGrid.setToolTipText("Damage: " + (warriorPlayer.getForce() + weaponPlayer.getPlus_force())
+		+ "\n Defense: " + warriorPlayer.getDefense()
+		+ "\n Agility: " + warriorPlayer.getAgility()
+		+ "\n Speed: " + (warriorPlayer.getVelocity() + weaponPlayer.getPlus_velocity()));
 		panelStats.setBackground(Color.gray);
 		panelGrid.setBackground(Color.gray);
 		panelStats.add(panelGrid);
@@ -247,7 +257,6 @@ class WarriorPanel extends JPanel{
 	public void setColor(Color color) {
 		vida.setForeground(color);
 	}
-	
 	
 }
 //Clase unica para cargar barras de progresso
@@ -315,4 +324,3 @@ class JPanelConFondo extends JPanel {
  
     //...
 }
-
