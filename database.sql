@@ -99,4 +99,4 @@ insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Legolas'
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Sylvanas', 3, 'sylvanas.png');
 insert into WARRIORS(WARRIOR_NAME, RACE_ID, WARRIOR_IMAGE_PATH) values('Link', 3, 'link.png');
 
-select * from weapons;
+
